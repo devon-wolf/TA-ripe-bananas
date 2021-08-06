@@ -45,4 +45,16 @@ describe('reviewers routes', () => {
         }]);
       });
   });
+
+  it('gets a reviewer by id', () => {
+    return request(app)
+      .get('/api/v1/reviewers/1')
+      .then(response => {
+        expect(response.body).toEqual({
+          id: 1,
+          ...newReviewer
+          // reviews: [{ id, rating, review, film: { id, title }}]
+        });
+      });
+  });
 });
