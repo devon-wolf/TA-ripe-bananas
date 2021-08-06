@@ -9,7 +9,7 @@ const newStudio = {
   country: 'USA'
 };
 
-describe('demo routes', () => {
+describe('studio routes', () => {
   beforeEach(() => {
     return database.sync({ force: true });
   });
