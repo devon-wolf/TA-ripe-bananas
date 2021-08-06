@@ -45,7 +45,7 @@ describe('studio routes', () => {
       .then(response => {
         expect(response.body).toEqual([{
           id: 1,
-          ...newStudio
+          name: newStudio.name
         }]);
       });
   });
@@ -56,7 +56,8 @@ describe('studio routes', () => {
       .then(response => {
         expect(response.body).toEqual({
           id: 1,
-          ...newStudio
+          ...newStudio,
+          // films: { id, title }
         });
       });
   });
