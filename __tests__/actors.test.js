@@ -4,7 +4,7 @@ import database from '../lib/utils/database';
 
 const newActor = {
   name: 'Actor Schmactor',
-  dob: 'idk date format',
+  dob: '1970-01-01',
   pob: 'Anchorage, AK, USA'
 };
 
@@ -22,7 +22,7 @@ describe('actors routes', () => {
   it('creates a new actor', () => {
     const anotherActor = {
       name: 'Actor Two',
-      dob: 'idk date format',
+      dob: '1970-01-01',
       pob: 'Birmingham, AL, USA'
     };
 
@@ -33,6 +33,28 @@ describe('actors routes', () => {
         expect(response.body).toEqual({
           id: 2,
           ...anotherActor
+        });
+      });
+  });
+
+  it('gets all actors', () => {
+    return request(app)
+      .get('/api/v1/actors')
+      .then(response => {
+        expect(response.body).toEqual([{
+          id: 1,
+          ...newActor
+        }]);
+      });
+  });
+
+  it('gets an actor by id', () => {
+    return request(app)
+      .get('/api/v1/actors/1')
+      .then(response => {
+        expect(response.body).toEqual({
+          id: 1,
+          ...newActor
         });
       });
   });
