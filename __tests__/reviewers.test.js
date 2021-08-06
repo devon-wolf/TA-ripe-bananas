@@ -34,4 +34,15 @@ describe('reviewers routes', () => {
         });
       });
   });
+
+  it('gets all reviewers', () => {
+    return request(app)
+      .get('/api/v1/reviewers')
+      .then(response => {
+        expect(response.body).toEqual([{
+          id: 1,
+          ...newReviewer
+        }]);
+      });
+  });
 });
