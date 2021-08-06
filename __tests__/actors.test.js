@@ -43,7 +43,7 @@ describe('actors routes', () => {
       .then(response => {
         expect(response.body).toEqual([{
           id: 1,
-          ...newActor
+          name: newActor.name
         }]);
       });
   });
