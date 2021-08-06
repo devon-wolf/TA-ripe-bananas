@@ -53,8 +53,8 @@ describe('actors routes', () => {
       .get('/api/v1/actors/1')
       .then(response => {
         expect(response.body).toEqual({
-          id: 1,
           ...newActor
+          // films: [{ id, title, released }]
         });
       });
   });
