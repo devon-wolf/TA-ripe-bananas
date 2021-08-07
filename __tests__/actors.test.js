@@ -8,13 +8,34 @@ const newActor = {
   pob: 'Anchorage, AK, USA'
 };
 
+const newFilm = {
+  title: 'The Greatest Film Ever',
+  released: 1990,
+  StudioId: 1
+};
+
+const newStudio = {
+  name: 'TA Studio',
+  city: 'Your Computer',
+  state: 'OR',
+  country: 'USA'
+};
+
 describe('actors routes', () => {
   beforeEach(() => {
     return database.sync({ force: true });
   });
 
-  beforeEach(() => {
-    return request(app)
+  beforeEach(async () => {
+    await request(app)
+      .post('/api/v1/studios')
+      .send(newStudio);
+
+    await request(app)
+      .post('/api/v1/films')
+      .send(newFilm);
+
+    await request(app)
       .post('/api/v1/actors')
       .send(newActor);
   });
@@ -53,8 +74,8 @@ describe('actors routes', () => {
       .get('/api/v1/actors/1')
       .then(response => {
         expect(response.body).toEqual({
-          ...newActor
-          // films: [{ id, title, released }]
+          ...newActor,
+          // films: [{ id: 1, title: newFilm.title, released: newFilm.released }]
         });
       });
   });
