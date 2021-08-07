@@ -5,7 +5,7 @@ import database from '../lib/utils/database';
 const newFilm = {
   title: 'The Greatest Film Ever',
   released: 1990,
-  StudioId: 1
+  // StudioId: 1
 };
 
 const newStudio = {
@@ -36,7 +36,7 @@ describe('film routes', () => {
     const anotherFilm = {
       title: 'The Greatest Film Ever',
       released: 1990,
-      StudioId: 1
+      // StudioId: 1
     };
 
     return request(app)
